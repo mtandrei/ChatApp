@@ -1,4 +1,4 @@
-URL-Shortener Flask App
+Flask Chat App
 
 To get set up on the project:
 
@@ -17,16 +17,15 @@ Fedora: yum install python-migrate
 
 Run the following commands:
 - "sudo mysql"
-- "create database url;"
-- "create user 'url'@'localhost' identified by 'url';"
-- "grant all privileges on url.* to 'url'@'localhost';"
+- "create database chat;"
+- "create user 'chat'@'localhost' identified by 'chat';"
+- "grant all privileges on chat.* to 'chat'@'localhost';"
 - "flush privileges;"
 Quit out of mysql with "quit". Then run:
 - "./migrate.py db init"
 - "./migrate.py db migrate"
 - "./migrate.py db upgrade"
 
-To check the database subsequently, run "mysql -uurl -purl"
+To check the database subsequently, run "mysql -uchat -pchat"
 To change database structure, edit url/models.py, then run migrate and upgrade again.
 If you happen to remove the migrations folder, then run init, migrate, then upgrade.
-# HackHers
