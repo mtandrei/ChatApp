@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block scripts %}
+<script src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="/static/js/main.js"></script>
+{% endblock %}
+
+{% block content %}
+{% if error %}
+<p class="error">{{ message }}</p>
+{% endif %}
+
+<form method="post" name="message" action="http://localhost:5000">
+    <label for="username">Username</label>
+    <input type="text" placeholder="Enter your username here" name="username" id="username">
+
+    <label for="message">Message</label>
+    <input type="text" placeholder="Enter the message here" name="message" id="message" maxlength="30">
+
+    <input class="button-primary" type="submit" value="Submit">
+</form>
+
+<ul class="messages"></ul>
+{% endblock %}

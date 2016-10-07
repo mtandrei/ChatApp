@@ -49,10 +49,10 @@ def messages():
         messages = Message.query.limit(30).all()
 
         #Builds JSON format list for front end
-        message_list = []
+        message_list = {}
         for i in range(0, len(messages)):
-            message_list.append(jsonify(username=messages[i].username, message=messages[i].message))
+            message_list[i] = { messages[i].username: messages[i].message }
 
-        return render_template('messages.html', messages=message_list)
+        return flask.jsonify(**message_list)
     else:
-        return render_template('error.html', error='ERROR: Bad request!')
+        return render_template('index.html', error='ERROR: Bad request!')
