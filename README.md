@@ -27,5 +27,5 @@ Quit out of mysql with "quit". Then run:
 - "./migrate.py db upgrade"
 
 To check the database subsequently, run "mysql -uchat -pchat"
-To change database structure, edit url/models.py, then run migrate and upgrade again.
+To change database structure, edit chat/models.py, then run migrate and upgrade again.
 If you happen to remove the migrations folder, then run init, migrate, then upgrade.
