@@ -12,15 +12,14 @@ def index():
         user = request.form['username']
         message = request.form['message']
         
-
-        #If blank message or username, return error
+        # If blank message or username, return error
         if user == "":
             return render_template('index.html', error="Error: You put in a blank username!")
 
         if message == "":
             return render_template('index.html', error="Error: You put in a blank message!")
 
-        #Check length of message and username
+        # Check length of message and username
         if len(user) > 15:
            return render_template('index.html',
                     error="Error: Username exceeds 15 characters")
@@ -43,14 +42,25 @@ def index():
 @app.route('/messages', methods=['GET'])
 def messages():
     if(request.method == 'GET'):
-        #Queries database for most recent 30 messages:
+        # Queries database for most recent 30 messages:
         messages = Message.query.limit(30).all()
 
-        #Builds JSON format list for front end
+        # Builds JSON format list for front end
         message_list = {}
         for i in range(0, len(messages)):
             message_list[i] = { messages[i].username: messages[i].message }
 
+        for key in message_list.keys():
+            if type(key) is not str:
+                try:
+                    message_list[str(key)] = message_list[key]
+                except:
+                    try:
+                        message_list[repr(key)] = message_list[key]
+                    except:
+                        pass
+            del message_list[key]
+        
         return jsonify(**message_list)
     else:
         return render_template('index.html', error='ERROR: Bad request!')
