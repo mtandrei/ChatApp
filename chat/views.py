@@ -5,7 +5,6 @@ from chat.models import Message
 @app.route('/', methods=['POST', 'GET'])
 def index():
     if request.method == 'GET':
-        #TODO Check to see if loading page or getting messages
         return render_template('index.html')
 
     if request.method == 'POST':
@@ -14,7 +13,6 @@ def index():
         message = request.form['message']
         
 
-        #TODO sanitize input
         #If blank message or username, return error
         if user == "":
             return render_template('index.html', error="Error: You put in a blank username!")
@@ -32,7 +30,7 @@ def index():
                     error="Error: Message exceeds 500 characters")
 
         # Create and add database record of message
-        msg = Message(message=message, user=user)
+        msg = Message(message=message, username=user)
         db.session.add(msg)
         db.session.commit()
 
@@ -53,6 +51,6 @@ def messages():
         for i in range(0, len(messages)):
             message_list[i] = { messages[i].username: messages[i].message }
 
-        return flask.jsonify(**message_list)
+        return jsonify(**message_list)
     else:
         return render_template('index.html', error='ERROR: Bad request!')
