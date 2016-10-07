@@ -90,10 +90,6 @@ img {
     flex: 1;
 }
 
-form {
-    text-align: center;
-}
-
 input {
     font: 400 1.8rem/1.6875 'PT Sans', sans-serif;
     font: 400 18px/1.6875 'PT Sans', sans-serif;
@@ -104,8 +100,8 @@ input[type="submit"].button-primary {
 }
 
 .button.button-primary, button.button-primary, input[type="submit"].button-primary, input[type="reset"].button-primary, input[type="button"].button-primary {
-    margin: 15px auto;
-    margin: 1.5rem auto;
+    margin: 15px 0;
+    margin: 1.5rem 0;
     background-color: #CA072D;
     border-color: #CA072D;
 }
