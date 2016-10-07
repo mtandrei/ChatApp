@@ -1,7 +1,7 @@
 $(function() {
     var messages = $('.messages');
     $.ajax({
-        url: 'http://localhost:5000/messages',
+        url: '/messages',
         dataType: 'json',
     })
     .done(function(data) {
